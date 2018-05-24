@@ -1,0 +1,39 @@
+#!/bin/bash
+
+cd /tmp
+
+pasteBIN="NO"
+
+pasteBASH=""
+
+if [ $pasteBIN == "YES" ]
+then
+wget https://pastebin.com/raw/$pasteBASH
+cp $pasteBASH '/media/m1/1263-A96E/oneBash'
+rm $pasteBASH
+fi
+
+firstBOOT="NO"
+
+if grep -q "convert" /home/m1/firstBOOT;
+then
+firstBOOT="YES"
+fi
+
+if [ $firstBOOT == "YES" ]
+then
+rm /home/m1/firstBOOT
+sleep 2
+touch /home/m1/firstBOOT
+sudo cp '/media/m1/1263-A96E/oneBash' '/home/m1/oneBash'
+echo "wait 15 seconds to minimize errors"
+sudo dos2unix /home/m1/oneBash
+rm /media/m1/1263-A96E/oneBash
+sleep 15
+fi
+
+pkill -f oneBash
+
+sleep 2
+
+bash '/home/m1/oneBash'
