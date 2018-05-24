@@ -48,8 +48,8 @@ plusCPU="NO"		        # YES NO
 threadCOUNT="1"                 	# varies per CPU
 
 # worker name implementation
-IP_AS_WORKER="mrig13"
-echo workername: $IP_AS_WORKER
+WORKER_NAME="mrig13"
+echo workername: $WORKER_NAME
 
 ########################################################################################
 
@@ -57,25 +57,25 @@ echo workername: $IP_AS_WORKER
 
 OPTIMINERorCLAYMORE="CLAYMORE"  # choose OPTIMINER  or  CLAYMORE
 
-ZEC_WORKER="$IP_AS_WORKER"
+ZEC_WORKER="$WORKER_NAME"
 ZEC_ADDRESS=""
 ZEC_POOL=""
 ZEC_INTENSITY=6
 ZEC_EXTENTION_ARGUMENTS=" -allpools 1"
 
-ZCL_WORKER="$IP_AS_WORKER"
+ZCL_WORKER="$WORKER_NAME"
 ZCL_ADDRESS=""
 ZCL_POOL=""
 ZCL_INTENSITY=6
 ZCL_EXTENTION_ARGUMENTS=""
 
-ZEN_WORKER="$IP_AS_WORKER"
+ZEN_WORKER="$WORKER_NAME"
 ZEN_ADDRESS=""
 ZEN_POOL=""
 ZEN_INTENSITY=6
 ZEN_EXTENTION_ARGUMENTS=""
 
-HUSH_WORKER="$IP_AS_WORKER"
+HUSH_WORKER="$WORKER_NAME"
 HUSH_ADDRESS=""
 HUSH_POOL=""
 HUSH_INTENSITY=6
@@ -84,7 +84,7 @@ HUSH_EXTENTION_ARGUMENTS=""
 BTC_ADDRESS=""
 
 # NICE autoconverts to BTC: ensure you update BTC_ADDRESS if you use NICE
-NICE_WORKER="$IP_AS_WORKER"
+NICE_WORKER="$WORKER_NAME"
 NICE_POOL="stratum+tcp://daggerhashimoto.eu.nicehash.com:3353"
 GENOIL_NICE_POOL="daggerhashimoto.eu.nicehash.com:3353"
 NICE_EXTENTION_ARGUMENTS=""   # add any additional claymore arguments desired here
@@ -95,41 +95,41 @@ CLAYMORE_VERSION="10_1"    # choose 10_1 or 9_5  or  9_4  or  8_0
 
 GENOILorCLAYMORE="CLAYMORE"  # choose GENOIL  or  CLAYMORE
 
-ETH_WORKER="$IP_AS_WORKER"
+ETH_WORKER="$WORKER_NAME"
 ETH_ADDRESS="0x57b42099bcf13b0ad1bd7c402e85d2e1ebb03e6e"
 ETH_POOL="eu1.ethermine.org:4444"
 ETH_EXTENTION_ARGUMENTS=""    # add any additional claymore arguments desired here
 
-ETC_WORKER="$IP_AS_WORKER"
+ETC_WORKER="$WORKER_NAME"
 ETC_ADDRESS=""
 ETC_POOL="us1-etc.ethermine.org:4444"
 ETC_EXTENTION_ARGUMENTS=""    # add any additional claymore arguments desired here
 
-EXP_WORKER="$IP_AS_WORKER"
+EXP_WORKER="$WORKER_NAME"
 EXP_ADDRESS=""
 EXP_POOL="exp-us.dwarfpool.com:8018"
 EXP_EXTENTION_ARGUMENTS=""    # add any additional claymore arguments desired here
 
-MUSIC_WORKER="$IP_AS_WORKER"
+MUSIC_WORKER="$WORKER_NAME"
 MUSIC_ADDRESS=""
 MUSIC_POOL="stratum+tcp://213.154.202.174:3334"
 MUSIC_EXTENTION_ARGUMENTS=""    # add any additional claymore arguments desired here
 
-SC_WORKER="$IP_AS_WORKER"
+SC_WORKER="$WORKER_NAME"
 SC_ADDRESS=""
 SC_POOL="sia-us-east1.nanopool.org:7777"
 SC_GW_POOL="sia-us-east1.nanopool.org:9980"
 
-DCR_WORKER="$IP_AS_WORKER"
+DCR_WORKER="$WORKER_NAME"
 DCR_ADDRESS=""
 DCR_POOL="stratum+tcp://dcr.suprnova.cc:3252"
 
-PASC_WORKER="$IP_AS_WORKER"
+PASC_WORKER="$WORKER_NAME"
 PASC_ADDRESS=""
 PASC_POOL="pasc-us-east1.nanopool.org:15555"
 
 # if plusCPU is "YES" replace with your XMR info
-XMR_WORKER="$IP_AS_WORKER"
+XMR_WORKER="$WORKER_NAME"
 XMR_ADDRESS=""
 XMR_POOL="stratum+tcp://xmr-us-east1.nanopool.org:14444"
 

@@ -1,0 +1,25 @@
+#!/bin/bash
+#
+# Based on rxOC v_stopgap by fullzero
+#
+# RXOS v0.1 by dazarn
+#
+
+cd /tmp
+
+pasteBIN="NO"
+
+pasteBASH=""
+
+if [ $pasteBIN == "YES" ]
+then
+wget https://pastebin.com/raw/$pasteBASH
+cp $pasteBASH '/home/m1/1bash'
+rm $pasteBASH
+fi
+
+pkill -f 1bash
+
+sleep 2
+
+bash '/home/m1/1bash'
