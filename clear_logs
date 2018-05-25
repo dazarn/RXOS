@@ -1,0 +1,22 @@
+#!/bin/bash
+
+cd /var/log
+
+ > /var/log/auth.log
+ > /var/log/dpkg.log
+ > /var/log/syslog
+ > /var/log/Xorg.0.log
+ > /var/log/kern.log
+
+cd /home/m1
+
+ > /home/m1/5_restartlog
+ > /home/m1/6_autotemplog
+ > /home/m1/current-profit
+ > /home/m1/algo-log
+ > /home/m1/7_wdog_alertlog
+ > /home/m1/7_temp_alertlog
+ > /home/m1/8_wtmautoswitchlog
+ > /home/m1/screenlog.0
+
+rm -r /home/m1/kk003_telegram_data
