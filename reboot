@@ -1,7 +1,13 @@
 #!/bin/bash
 #
+# Based on rxOC v_stopgap by fullzero & nvOC v0019-2.0 - Community Release by papampi, Stubo and leenoox
+#
+# RXOS v0.1 by dazarn
+#
+# USE ALL CAPS
+#
 
-source ~/1bash
+source /home/m1/1bash
 
 TIMEIN=$REBOOT_TIMEOUT_IN_MINUTES
 

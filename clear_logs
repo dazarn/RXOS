@@ -19,4 +19,4 @@ cd /home/m1
  > /home/m1/8_wtmautoswitchlog
  > /home/m1/screenlog.0
 
-rm -r /home/m1/kk003_telegram_data
+#rm -r /home/m1/kk003_telegram_data

@@ -1,5 +1,10 @@
 #!/bin/bash
-# log rotation by papampi for nvOC by fullzero, v0019-2.0 Community Release
+#
+# Based on rxOC v_stopgap by fullzero & nvOC v0019-2.0 - Community Release by papampi, Stubo and leenoox
+#
+# RXOS v0.1 by dazarn
+#
+# USE ALL CAPS
 #
 
 nvOC_Ver="nvOC v0019-2.0 - Community Release"

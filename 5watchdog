@@ -108,26 +108,10 @@ fi
 while true; do
 
   # Echo status
-  UTILIZATIONS=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits)
+  UTILIZATIONS=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits) #to change with a AMD command
   echo "GPU UTILIZATION: " $UTILIZATIONS
   echo "      GPU_COUNT: " $GPU_COUNT
 
-
-  #If WTM auto switch python cant sync, kill it
-  if [[  $WTM_AUTO_SWITCH  ==  "YES"  ]] || [[ $WTM_PROFIT_CHECK == "YES" ]]
-  then
-    WTM_S_PID=$(ps -ef | grep WTM_SWITCHER | grep -v grep |awk '{print $2}')
-    if  [[ -n $WTM_S_PID ]]
-    then
-      WTM_S_PID_TIME=$(ps -eo pid,etimes | grep $WTM_S_PID | awk  '$2> 30 { print $1}')
-      echo "WTM Switcher Syncing"
-      if  [[ -n "$WTM_S_PID_TIME" ]]
-      then
-        echo "WARNING: $(date) - WTM switcher can't sync, kill it"
-        ps -eo pid,etimes | grep $(pgrep -f WTM_SWITCHER) | awk  '$2> 30 { print $1}'  | xargs kill -9
-      fi
-    fi
-  fi
 
   # Set/increment vars
   NUM_GPU_BLW_THRSHLD=0              # Track how many GPU are below threshold
@@ -140,27 +124,27 @@ while true; do
     # Numeric check: if any are not numeric, we have a mining problem
 
     # Workaround for 1050's reporting "[Not Supported]" or "[Unknown Error]" when power.draw is queried from nvidia-smi
-    if [[ $(nvidia-smi -i $GPU --query-gpu=name --format=csv,noheader,nounits | grep "1050") ]]; then
-      if ! [[ ( $UTIL =~ $numtest ) && ( $CURRENT_TEMP =~ $numtest ) && ( $CURRENT_FAN =~ $numtest ) && ( $PWRLIMIT =~ $numtest ) ]]; then
-        # Not numeric so: Help we've lost a GPU, so reboot
-        echo "$(date) - Lost GPU so restarting system. Found GPU's:" | tee -a ${LOG_FILE}
-        echo ""
-        # Hope PCI BUS info will help find the faulty GPU
-        nvidia-smi --query-gpu=gpu_bus_id --format=csv | tee -a ${LOG_FILE}
-        echo "$(date) - reboot in 10 seconds"  | tee -a ${LOG_FILE}
-        echo ""
-        if [[ $TELEGRAM_ALERTS == "YES" ]]; then
-          bash '/home/m1/telegram'
-        fi
-        sleep 10
-        sudo reboot
-      elif [ $UTIL -lt $THRESHOLD ] # If utilization is lower than threshold, decrement counter
-      then
-        echo "$(date) - GPU $GPU under threshold found - GPU UTILIZATION:  " $UTIL  | tee -a ${LOG_FILE}
-        COUNT=$(($COUNT - 1))
-        NUM_GPU_BLW_THRSHLD=$(($NUM_GPU_BLW_THRSHLD + 1))
-      fi
-    else
+#    if [[ $(nvidia-smi -i $GPU --query-gpu=name --format=csv,noheader,nounits | grep "1050") ]]; then
+#      if ! [[ ( $UTIL =~ $numtest ) && ( $CURRENT_TEMP =~ $numtest ) && ( $CURRENT_FAN =~ $numtest ) && ( $PWRLIMIT =~ $numtest ) ]]; then
+#        # Not numeric so: Help we've lost a GPU, so reboot
+#        echo "$(date) - Lost GPU so restarting system. Found GPU's:" | tee -a ${LOG_FILE}
+#        echo ""
+#        # Hope PCI BUS info will help find the faulty GPU
+#        nvidia-smi --query-gpu=gpu_bus_id --format=csv | tee -a ${LOG_FILE}
+#        echo "$(date) - reboot in 10 seconds"  | tee -a ${LOG_FILE}
+#        echo ""
+#        if [[ $TELEGRAM_ALERTS == "YES" ]]; then
+#          bash '/home/m1/telegram'
+#        fi
+#        sleep 10
+#        sudo reboot
+#      elif [ $UTIL -lt $THRESHOLD ] # If utilization is lower than threshold, decrement counter
+#      then
+#        echo "$(date) - GPU $GPU under threshold found - GPU UTILIZATION:  " $UTIL  | tee -a ${LOG_FILE}
+#        COUNT=$(($COUNT - 1))
+#        NUM_GPU_BLW_THRSHLD=$(($NUM_GPU_BLW_THRSHLD + 1))
+#      fi
+#    else
       if ! [[ ( $UTIL =~ $numtest ) && ( $CURRENT_TEMP =~ $numtest ) && ( $CURRENT_FAN =~ $numtest ) && ( $POWERDRAW =~ $numtest ) && ( $PWRLIMIT =~ $numtest ) ]]; then
         # Not numeric so: Help we've lost a GPU, so reboot
         echo "$(date) - Lost GPU so restarting system. Found GPU's:" | tee -a ${LOG_FILE}
@@ -180,10 +164,12 @@ while true; do
         COUNT=$(($COUNT - 1))
         NUM_GPU_BLW_THRSHLD=$(($NUM_GPU_BLW_THRSHLD + 1))
       fi
-    fi
+#    fi
 
     sleep 0.2    # 0.2 seconds delay until querying the next GPU
   done
+#end of for
+
 
   # If we found at least one GPU below the utilization threshold
   if [ $NUM_GPU_BLW_THRSHLD -gt 0 ]
